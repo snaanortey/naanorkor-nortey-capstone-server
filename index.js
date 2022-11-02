@@ -13,6 +13,12 @@ const bodyParser = require("body-parser");
 
 const elasticClient = require("./elastic-client");
 
+const searchMealRoute = require("./routes/searchMealsRoute");
+
+const getIngredientsById = require("./routes/getIngredientsById");
+
+const getmealsbypostingingredients = require("./routes/getmealsbypostingingredients");
+
 require("express-async-errors");
 
 app.use(bodyParser.json());
@@ -23,27 +29,12 @@ app.get("/", (req, res) => {
   //redirects to where frontend will be located
   res.redirect("http://localhost:3000/");
 });
-app.get("/search", async (req, res) => {
-  try {
-    const result = await elasticClient.search({
-      index: "recipes",
-      _source: false,
-      query: {
-        match_phrase_prefix: {
-          title: req.query.query,
-        },
-      },
-      fields: ["title"],
-    });
 
-    console.log(result);
+app.use("/meals/search", searchMealRoute);
 
-    res.json(result);
-  } catch (err) {
-    console.log(error);
-    throw new Error("failed to load meal suggestions");
-  }
-});
+app.use("/ingredients", getIngredientsById);
+
+app.use("/ingredientlist", getmealsbypostingingredients);
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
