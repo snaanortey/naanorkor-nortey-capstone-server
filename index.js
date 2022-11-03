@@ -17,7 +17,7 @@ const searchMealRoute = require("./routes/searchMealsRoute");
 
 const getIngredientsById = require("./routes/getIngredientsById");
 
-const getmealsbypostingingredients = require("./routes/getmealsbypostingingredients");
+const searchingredients = require("./routes/searchingredients");
 
 require("express-async-errors");
 
@@ -34,7 +34,7 @@ app.use("/meals/search", searchMealRoute);
 
 app.use("/ingredients", getIngredientsById);
 
-app.use("/ingredientlist", getmealsbypostingingredients);
+app.use("/recipes/search", searchingredients);
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
