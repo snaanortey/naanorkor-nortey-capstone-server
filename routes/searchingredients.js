@@ -1,34 +1,14 @@
 const express = require("express");
-const { arrayBuffer } = require("stream/consumers");
 
 const router = express.Router();
 
-const elasticClient = require("../elastic-client");
-
-// { match: { ingredients: "fresh strawberries" }}
-
-function ingredient(array) {
-  const transformedArray = array.map((item) => ({
-    match: { ingredients: item },
-  }));
-  return transformedArray;
-}
+const { searchIngredientsByKeyWords } = require("../services/search.js");
 
 router.post("/", async (req, res) => {
-  const elasticSearchQuery = {
-    query: {
-      bool: {
-        should: ingredient(req.body),
-      },
-    },
-  };
-
-  console.log(elasticSearchQuery);
-
   try {
-    const result = await elasticClient.search(elasticSearchQuery);
+    const response = await searchIngredientsByKeyWords(req.body);
 
-    res.send(result.hits.hits);
+    res.send(response);
   } catch (err) {
     console.log("error:", err);
     res.status(404).send("failed to load recipes");

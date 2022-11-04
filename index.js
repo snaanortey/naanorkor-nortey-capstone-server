@@ -1,11 +1,10 @@
+require('dotenv').config();
 const express = require("express");
+const cors = require("cors");
+const fileUpload = require("express-fileupload");
+require("express-async-errors");
 
 const app = express();
-
-const cors = require("cors");
-
-const fs = require("fs");
-
 const PORT = 8000;
 
 // Creating express routes for my elastic search end points
@@ -19,11 +18,20 @@ const getIngredientsById = require("./routes/getIngredientsById");
 
 const searchingredients = require("./routes/searchingredients");
 
-require("express-async-errors");
+const imageToTextAPIRoute = require("./routes/imageToTextAPIRoute");
+
+const downloadSaveFile = require("./routes/imageSearchRoute");
 
 app.use(bodyParser.json());
 
 app.use(cors());
+
+// enable files upload
+app.use(
+  fileUpload({
+    createParentPath: true,
+  })
+);
 
 app.get("/", (req, res) => {
   //redirects to where frontend will be located
@@ -35,6 +43,10 @@ app.use("/meals/search", searchMealRoute);
 app.use("/ingredients", getIngredientsById);
 
 app.use("/recipes/search", searchingredients);
+
+app.use("/image/ingredients", imageToTextAPIRoute);
+
+app.use("/", downloadSaveFile);
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
