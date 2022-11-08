@@ -14,7 +14,7 @@ router.get("/:id", async (req, res) => {
 
     console.log(result);
 
-    res.json(result._source.ingredients);
+    res.json(result._source);
   } catch (err) {
     console.log("Error getting ingredients by mealId", err);
     // if err is an object of the class ResponseError
