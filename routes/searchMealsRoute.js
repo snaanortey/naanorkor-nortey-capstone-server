@@ -25,13 +25,9 @@ router.get("/", async (req, res) => {
       fields: ["title"],
     });
 
-    console.log(result);
-
     const array = result.hits.hits;
 
     const apiResponse = array.map(transformElasticSearchObject);
-
-    console.log(apiResponse);
 
     res.send(apiResponse);
   } catch (err) {

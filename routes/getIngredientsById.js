@@ -12,8 +12,6 @@ router.get("/:id", async (req, res) => {
       id: req.params.id,
     });
 
-    console.log(result);
-
     res.json(result._source);
   } catch (err) {
     console.log("Error getting ingredients by mealId", err);

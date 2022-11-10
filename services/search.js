@@ -1,5 +1,5 @@
 const elasticClient = require("../elastic-client");
-const axios = require('axios');
+const axios = require("axios");
 
 function transformedArray(array) {
   const newArray = array.map((item) => ({
@@ -25,8 +25,6 @@ const searchIngredientsByKeyWords = async (array) => {
       },
     },
   };
-
-  console.log(elasticSearchQuery);
 
   const result = await elasticClient.search(elasticSearchQuery);
 

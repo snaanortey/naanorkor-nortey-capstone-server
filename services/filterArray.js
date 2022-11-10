@@ -4,4 +4,4 @@ function filterArray(array, value1, value2, value3) {
   });
 }
 
-module.exports = {filterArray};
+module.exports = { filterArray };

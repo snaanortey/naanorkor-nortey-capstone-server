@@ -25,8 +25,6 @@ const populateIndexWithRecipes = async () => {
           Authorization: apiKey,
         },
       });
-
-      console.log(`${response.data._id} ${response.data.result}`);
     } catch (error) {
       console.log(error);
       throw new Error(
