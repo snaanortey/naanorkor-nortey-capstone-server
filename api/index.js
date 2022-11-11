@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
@@ -10,17 +10,17 @@ const PORT = 8000;
 // Creating express routes for my elastic search end points
 const bodyParser = require("body-parser");
 
-const elasticClient = require("./elastic-client");
+const elasticClient = require("../elastic-client");
 
-const searchMealRoute = require("./routes/searchMealsRoute");
+const searchMealRoute = require("../routes/searchMealsRoute");
 
-const getIngredientsById = require("./routes/getIngredientsById");
+const getIngredientsById = require("../routes/getIngredientsById");
 
-const searchingredients = require("./routes/searchingredients");
+const searchingredients = require("../routes/searchingredients");
 
-const imageToTextAPIRoute = require("./routes/imageToTextAPIRoute");
+const imageToTextAPIRoute = require("../routes/imageToTextAPIRoute");
 
-const downloadSaveFile = require("./routes/imageSearchRoute");
+const downloadSaveFile = require("../routes/imageSearchRoute");
 
 app.use(bodyParser.json());
 
