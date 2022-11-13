@@ -2,7 +2,7 @@ const express = require("express");
 const { errors } = require("@elastic/elasticsearch");
 const router = express.Router();
 
-const elasticClient = require("../elastic-client");
+const elasticClient = require("../services/elastic-client");
 
 router.get("/:id", async (req, res) => {
   try {

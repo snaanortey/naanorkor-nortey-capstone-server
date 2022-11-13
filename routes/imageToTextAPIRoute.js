@@ -1,13 +1,9 @@
-// This file handles single file uploads with Node.js and Express backend and saves uploaded files on the server
-
-// Step 1 - install these dependencies >>>> npm install express-fileupload morgan lodash --save
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const _ = require("lodash");
 const { searchIngredientsByKeyWords } = require("../services/search");
-const {filterArray} = require("../services/filterArray");
+const { filterArray } = require("../services/filter-array");
 const app = express();
 
 const router = express.Router();
@@ -18,9 +14,6 @@ const vision = require("@google-cloud/vision");
 // Creates a client
 const client = new vision.ImageAnnotatorClient();
 
-//add other middleware
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 router.post("/", async (req, res) => {
@@ -41,8 +34,13 @@ router.post("/", async (req, res) => {
     const annotations = result.localizedObjectAnnotations;
     const namesArray = annotations.map((item) => item.name);
 
-    const filteredArray = filterArray(namesArray, "Container", "Food", "Vegetable");
-    
+    const filteredArray = filterArray(
+      namesArray,
+      "Container",
+      "Food",
+      "Vegetable"
+    );
+
     res.send(filteredArray);
   } catch (err) {
     console.log(err);

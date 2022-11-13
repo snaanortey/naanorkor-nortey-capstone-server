@@ -2,7 +2,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const elasticClient = require("../elastic-client");
+const elasticClient = require("../services/elastic-client");
 
 const transformElasticSearchObject = (item) => {
   const result = {

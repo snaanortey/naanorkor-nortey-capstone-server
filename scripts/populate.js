@@ -5,7 +5,7 @@ const fileContent = fs.readFileSync("./scripts/ingredients.json");
 
 const recipes = JSON.parse(fileContent);
 
-const elasticClient = require("../elastic-client");
+const elasticClient = require("../services/elastic-client");
 
 const populateIndexWithRecipes = async () => {
   for (const property in recipes) {

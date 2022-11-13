@@ -1,4 +1,4 @@
-const elasticClient = require("../elastic-client");
+const elasticClient = require("../services/elastic-client");
 const axios = require("axios");
 
 function transformedArray(array) {

@@ -1,16 +1,16 @@
-require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
-require("express-async-errors");
+const PORT = process.env.PORT || 8000;
 
 const app = express();
-const PORT = 8000;
+require("dotenv").config();
+require("express-async-errors");
 
 // Creating express routes for my elastic search end points
 const bodyParser = require("body-parser");
 
-const elasticClient = require("./elastic-client");
+const elasticClient = require("./services/elastic-client");
 
 const searchMealRoute = require("./routes/searchMealsRoute");
 
