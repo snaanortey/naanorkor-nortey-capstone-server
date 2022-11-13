@@ -7,7 +7,7 @@ const elasticClient = new Client({
     id: process.env.ELASTIC_CLOUD_ID,
   },
   auth: {
-    apiKey: process.env.apiKey,
+    apiKey: process.env.ELASTIC_CLOUD_API_KEY,
   },
 });
 
